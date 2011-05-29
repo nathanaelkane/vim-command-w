@@ -1,6 +1,16 @@
 # Closer
 Closer is a plugin which closes Vim when the last buffer has been closed.
 
+## Why
+I created this simple plugin to solve my biggest gripe with Vim... how it closes buffers.
+
+Here's how I want Vim buffers to work:
+
+* Close buffers but keep windows open (which [buffkill](http://www.vim.org/scripts/script.php?script_id=1147) solves)
+* When I close the last **listed** buffer, I want Vim to close
+
+A listed buffer is buffer that shows up when you type `:buffers`. Usually, only important or editable buffers appear in this list. The list doesn't include buffers like the one NERDTree provides.
+
 ## Requirements
 * Vim 7+
 * [buffkill](http://www.vim.org/scripts/script.php?script_id=1147) - Allows you to close a buffer without closing a window.

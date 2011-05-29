@@ -6,23 +6,26 @@ if exists('g:loaded_closer') || &cp
 endif
 let g:loaded_closer = 1
 
-function! s:close_vim_when_no_buffers_left()
-  if s:number_of_buffers() == 1
-    qall
+function s:BufkillError()
+  if !exists('g:closer_bufkill_error_shown')
+    echoe 'Closer requires the bufkill plugin to be installed in order to operate correctly'
+    let g:closer_bufkill_error_shown = 1
   endif
 endfunction
 
-function! s:number_of_buffers()
-  let l:buffer_count = 0
-  let l:last_buffer = str2nr(bufnr('$'))
+function! s:Closer()
+  let l:bufcount = len(filter(range(1, bufnr('$')), 'buflisted(v:val) == 1'))
 
-  for l:bufnr in range(1, l:last_buffer)
-    if bufloaded(l:bufnr) && buflisted(l:bufnr)
-      let l:buffer_count = l:buffer_count + 1
-    end
-  endfor
-
-  return l:buffer_count
+  if l:bufcount == 1
+    qall
+  else
+    if exists('g:loaded_bufkill')
+      BD
+    else
+      call s:BufkillError()
+      q
+    endif
+  endif
 endfunction
 
-autocmd BufUnload,BufWipeout * call s:close_vim_when_no_buffers_left()
+command! -bar Closer call s:Closer()

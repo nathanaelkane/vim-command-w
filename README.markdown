@@ -40,6 +40,15 @@ If you have [Vundle](https://github.com/gmarik/vundle) installed, simply add the
 Then use the `:BundleInstall` command to install the plugin.
 
 ## Usage
-Press ⌘W to start closing some buffers (or to close Vim if you've only got one buffer open).
 
-You can also manually use `:CommandW` instead of `:bd` (or `:BD` if you use bufkill).
+### MacVim
+Add the following to your `.gvimrc`:
+
+    macmenu &File.Close key=<nop>
+    nmap <D-w> :CommandW<CR>
+    imap <D-w> <Esc>:CommandW<CR>
+
+Now you can press ⌘W to close buffers (or to close Vim if you've only got one buffer open).
+
+### Other
+You can manually use `:CommandW` instead of `:bd` (or `:BD` if you use bufkill).

@@ -48,7 +48,7 @@ Add the following to your `.gvimrc`:
     nmap <D-w> :CommandW<CR>
     imap <D-w> <Esc>:CommandW<CR>
 
-Now you can press ⌘W to close buffers (or to close Vim if you've only got one buffer open).
+Now you can press ⌘W to close buffers (or to close Vim if you only have one open buffer).
 
 ### Other
 You can manually use `:CommandW` instead of `:bd` (or `:BD` if you use bufkill).
